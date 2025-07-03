@@ -26,13 +26,13 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
-        <Route path="/admin/products" element={<AdminProductsPage />} />
-        <Route path="/admin/products/create" element={<CreateProductPage />} />
-        <Route path="/admin/products/:id/edit" element={<EditProductPage />} />
-        <Route path="/admin/orders" element={<AdminOrdersPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+        <Route path="/admin/products" element={<AdminRoute><AdminProductsPage /></AdminRoute>} />
+        <Route path="/admin/products/create" element={<AdminRoute><CreateProductPage /></AdminRoute>} />
+        <Route path="/admin/products/:id/edit" element={<AdminRoute><EditProductPage /></AdminRoute>} />
+        <Route path="/admin/orders" element={<AdminRoute><AdminOrdersPage /></AdminRoute>} />
       </Routes>
     </>
   );
