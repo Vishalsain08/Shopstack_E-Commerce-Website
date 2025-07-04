@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../api/axios';
 import ProductCard from '../components/ProductCard';
+import Loader from '../components/Loader';
 import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
@@ -10,6 +11,7 @@ const HomePage = () => {
   const [filtered, setFiltered] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -21,14 +23,24 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axiosInstance.get('/products/');
-      setProducts(res.data);
-      setFiltered(res.data);
+      try {
+        const res = await axiosInstance.get('/products/');
+        setProducts(res.data);
+        setFiltered(res.data);
+      } catch (err) {
+        toast.error('Failed to fetch products');
+      } finally {
+        setLoading(false);
+      }
     };
 
     const fetchCategories = async () => {
-      const res = await axiosInstance.get('/products/categories');
-      setCategories(res.data);
+      try {
+        const res = await axiosInstance.get('/products/categories');
+        setCategories(res.data);
+      } catch (err) {
+        toast.error('Failed to fetch categories');
+      }
     };
 
     fetchData();
@@ -45,11 +57,11 @@ const HomePage = () => {
   };
 
   return (
-    <div className=" min-h-screen py-8">
+    <div className="min-h-screen bg-gradient-to-br from-teal-100 via-sky-100 to-indigo-100 py-8">
       <div className="max-w-7xl mx-auto px-6">
         {/* 🛍️ Header */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-accent flex items-center gap-2">
+          <h2 className="text-3xl font-bold text-black flex items-center gap-2">
             <ShoppingBag className="w-6 h-6 text-black" />
             All Products
           </h2>
@@ -82,8 +94,10 @@ const HomePage = () => {
           ))}
         </div>
 
-        {/* 🧱 Product Grid */}
-        {filtered.length === 0 ? (
+        {/* 🔄 Loader or Products */}
+        {loading ? (
+          <Loader />
+        ) : filtered.length === 0 ? (
           <p className="text-gray-600">No products found.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

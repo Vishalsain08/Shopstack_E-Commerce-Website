@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { toast } from 'react-toastify';
 import {
   FaShoppingCart,
   FaUser,
@@ -18,9 +19,10 @@ const Navbar = () => {
   const itemCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
   const handleLogout = () => {
-    logout();
-    navigate('/');
+    logout();             // from AuthContext, clears user auth data (e.g. token)
+    navigate('/');        // redirects user to Home
     setCartItems([]);
+    toast.success('Logged out successfully');     // from CartContext, clears the cart on logout
   };
 
   return (

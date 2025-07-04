@@ -37,20 +37,20 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-6">
-      <div className="bg-white shadow-xl rounded-xl max-w-xl w-full p-12 space-y-8">
-        <h2 className="text-4xl font-extrabold text-center text-primary">Welcome Back 👋</h2>
-        <p className="text-center text-gray-600 text-lg">Login to your ShopStack account</p>
+    <div className="h-screen mx-auto overflow-hidden flex items-center justify-center bg-gradient-to-br from-teal-100 via-sky-100 to-indigo-100 px-4">
+      <div className="bg-white/80 backdrop-blur-xl border border-white/30 shadow-xl rounded-2xl max-w-md w-full p-10 space-y-6">
+        <h2 className="text-3xl font-bold text-center text-accent">Welcome Back 👋</h2>
+        <p className="text-center text-gray-600 text-sm">Login to your ShopStack account</p>
 
-        <form onSubmit={handleLogin} className="space-y-8">
+        <form onSubmit={handleLogin} className="space-y-5">
           <div>
-            <label className="block text-lg font-semibold text-gray-700 mb-2">Email</label>
-            <div className="flex items-center border rounded-lg px-4 py-3">
-              <FaEnvelope className="text-gray-400 mr-3 text-xl" />
+            <label className="block text-base font-medium text-gray-700 mb-1">Email</label>
+            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-accent">
+              <FaEnvelope className="text-gray-400 mr-2 text-lg" />
               <input
                 type="email"
-                placeholder="you@example.com"
-                className="w-full text-lg focus:outline-none"
+                placeholder="Enter your email"
+                className="w-full bg-transparent focus:outline-none text-base"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -59,13 +59,13 @@ const LoginPage = () => {
           </div>
 
           <div>
-            <label className="block text-lg font-semibold text-gray-700 mb-2">Password</label>
-            <div className="flex items-center border rounded-lg px-4 py-3">
-              <FaLock className="text-gray-400 mr-3 text-xl" />
+            <label className="block text-base font-medium text-gray-700 mb-1">Password</label>
+            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-accent">
+              <FaLock className="text-gray-400 mr-2 text-lg" />
               <input
                 type="password"
-                placeholder="••••••••"
-                className="w-full text-lg focus:outline-none"
+                placeholder="Enter your password"
+                className="w-full bg-transparent focus:outline-none text-base"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -75,15 +75,15 @@ const LoginPage = () => {
 
           <button
             type="submit"
-            className="w-full bg-primary text-white py-3 rounded-lg hover:bg-blue-700 transition text-lg font-semibold"
+            className="w-full bg-accent hover:bg-green-700 transition text-white py-3 rounded-lg text-lg font-semibold shadow-md"
           >
             Login
           </button>
         </form>
 
-        <div className="text-center text-base text-gray-600">
+        <div className="text-center text-sm text-gray-600">
           New user?{' '}
-          <Link to="/register" className="text-primary hover:underline font-semibold">
+          <Link to="/register" className="text-accent hover:underline font-medium">
             Sign up here
           </Link>
         </div>

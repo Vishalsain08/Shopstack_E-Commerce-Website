@@ -13,7 +13,7 @@ const RegisterPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -29,23 +29,23 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
-      <div className="bg-white shadow-xl rounded-xl max-w-md w-full p-8 space-y-6">
-        <h2 className="text-3xl font-bold text-center text-primary">Create Account 🚀</h2>
-        <p className="text-center text-gray-500">Register to start shopping</p>
+    <div className="h-screen mx-auto overflow-hidden flex items-center justify-center bg-gradient-to-br from-teal-100 via-sky-100 to-indigo-100 px-4">
+      <div className="bg-white/80 backdrop-blur-xl border border-white/30 shadow-xl rounded-2xl max-w-md w-full p-10 space-y-6">
+        <h2 className="text-3xl font-bold text-center text-accent">Create Account 🚀</h2>
+        <p className="text-center text-gray-600 text-sm">Register to start shopping</p>
 
         {err && <p className="text-red-600 text-sm text-center">{err}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
-            <div className="flex items-center border rounded px-3 py-2">
-              <FaUser className="text-gray-400 mr-2" />
+            <label className="block text-base font-medium text-gray-700 mb-1">Username</label>
+            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-accent">
+              <FaUser className="text-gray-400 mr-2 text-lg" />
               <input
                 name="name"
                 type="text"
-                placeholder="john_doe"
-                className="w-full focus:outline-none"
+                placeholder="Enter your Username"
+                className="w-full bg-transparent focus:outline-none text-base"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -54,14 +54,14 @@ const RegisterPage = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <div className="flex items-center border rounded px-3 py-2">
-              <FaEnvelope className="text-gray-400 mr-2" />
+            <label className="block text-base font-medium text-gray-700 mb-1">Email</label>
+            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-accent">
+              <FaEnvelope className="text-gray-400 mr-2 text-lg" />
               <input
                 name="email"
                 type="email"
-                placeholder="you@example.com"
-                className="w-full focus:outline-none"
+                placeholder="Enter your email"
+                className="w-full bg-transparent focus:outline-none text-base"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -70,14 +70,14 @@ const RegisterPage = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <div className="flex items-center border rounded px-3 py-2">
-              <FaLock className="text-gray-400 mr-2" />
+            <label className="block text-base font-medium text-gray-700 mb-1">Password</label>
+            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-accent">
+              <FaLock className="text-gray-400 mr-2 text-lg" />
               <input
                 name="password"
                 type="password"
-                placeholder="••••••••"
-                className="w-full focus:outline-none"
+                placeholder="Enter your password"
+                className="w-full bg-transparent focus:outline-none text-base"
                 value={formData.password}
                 onChange={handleChange}
                 required
@@ -85,19 +85,19 @@ const RegisterPage = () => {
             </div>
           </div>
 
-          <button className="w-full bg-accent text-white py-2 rounded hover:bg-green-700 transition">
+          <button
+            type="submit"
+            className="w-full bg-accent hover:bg-green-700 transition text-white py-3 rounded-lg text-lg font-semibold shadow-md"
+          >
             Register
           </button>
         </form>
 
-        {/* 🔁 Already have an account */}
-        <div className="text-center">
-          <p className="text-gray-600 text-sm">
-            Already have an account?{' '}
-            <Link to="/login" className="text-primary font-medium hover:underline">
-              Login
-            </Link>
-          </p>
+        <div className="text-center text-sm text-gray-600">
+          Already have an account?{' '}
+          <Link to="/login" className="text-accent hover:underline font-medium">
+            Login
+          </Link>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@
 
 ## 🔗 Live Demo
 
-[👉 View Demo](https://your-live-url.com)  
+[👉 View Demo](https://shopstack-e-commerce-website.vercel.app/)  
 _(Replace with your Vercel/Netlify/Render deployment URL)_
 
 ---
