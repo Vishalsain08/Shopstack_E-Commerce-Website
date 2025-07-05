@@ -28,18 +28,19 @@ const getProductById = async (req, res) => {
 };
 const deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
 
-    if (product) {
-      await product.remove();
-      res.json({ message: 'Product removed' });
-    } else {
-      res.status(404).json({ message: 'Product not found' });
+    if (!deletedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
     }
+
+    res.json({ message: 'Product deleted successfully' });
   } catch (err) {
+    console.error('Error deleting product:', err);
     res.status(500).json({ message: 'Error deleting product' });
   }
 };
+
 const createProduct = async (req, res) => {
   const {
     name,
