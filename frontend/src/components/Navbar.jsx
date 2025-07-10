@@ -9,41 +9,66 @@ import {
   FaSignInAlt,
   FaUserPlus,
   FaTools,
+  FaBars,
+  FaTimes,
 } from 'react-icons/fa';
+import { useState } from 'react';
 
 const Navbar = () => {
   const { cartItems, setCartItems } = useCart();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const itemCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
   const handleLogout = () => {
-    logout();             // from AuthContext, clears user auth data (e.g. token)
-    navigate('/');        // redirects user to Home
+    logout();
+    navigate('/');
     setCartItems([]);
-    toast.success('Logged out successfully');     // from CartContext, clears the cart on logout
+    toast.success('Logged out successfully');
+    setMenuOpen(false);
   };
 
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
-    <nav className="bg-indigo-100 shadow sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="bg-slate-700 shadow-md border-b border-indigo-300 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-indigo-700 flex items-center gap-2">
+        <Link
+          to="/"
+          className="text-2xl font-bold text-indigo-300 flex items-center gap-2"
+          onClick={() => setMenuOpen(false)}
+        >
           🛍️ ShopStack
         </Link>
 
-        <div className="flex items-center gap-4">
+        {/* Hamburger Icon (Mobile) */}
+        <div className="sm:hidden">
+          <button onClick={toggleMenu} className="text-indigo-200 text-xl focus:outline-none">
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+        {/* Menu Items */}
+        <div
+          className={`${
+            menuOpen ? 'block' : 'hidden'
+          } absolute sm:static top-16 left-0 w-full sm:w-auto bg-slate-800 sm:bg-transparent sm:flex sm:items-center gap-4 px-4 sm:px-0 py-4 sm:py-0 flex-col sm:flex-row`}
+        >
           <Link
             to="/"
-            className="px-3 py-1 text-gray-800 hover:text-indigo-600 hover:bg-indigo-200 rounded transition"
+            onClick={() => setMenuOpen(false)}
+            className="px-3 py-1 text-slate-100 hover:text-white hover:bg-slate-600 rounded transition"
           >
             Home
           </Link>
 
           <Link
             to="/cart"
-            className="relative px-3 py-1 text-gray-800 hover:text-indigo-600 hover:bg-indigo-200 rounded transition flex items-center gap-1"
+            onClick={() => setMenuOpen(false)}
+            className="relative px-3 py-1 text-slate-100 hover:text-white hover:bg-slate-600 rounded transition flex items-center gap-1"
           >
             <FaShoppingCart />
             Cart
@@ -55,10 +80,11 @@ const Navbar = () => {
           </Link>
 
           {user ? (
-            <div className="flex items-center gap-3">
+            <>
               <Link
                 to="/profile"
-                className="px-3 py-1 flex items-center gap-1 text-gray-800 hover:text-indigo-600 hover:bg-indigo-200 rounded transition capitalize"
+                onClick={() => setMenuOpen(false)}
+                className="px-3 py-1 flex items-center gap-1 text-slate-100 hover:text-white hover:bg-slate-600 rounded transition capitalize"
               >
                 <FaUser />
                 Profile
@@ -66,7 +92,8 @@ const Navbar = () => {
 
               <Link
                 to="/admin/dashboard"
-                className="px-3 py-1 flex items-center gap-1 text-indigo-700 hover:underline text-sm"
+                onClick={() => setMenuOpen(false)}
+                className="px-3 py-1 flex items-center gap-1 text-indigo-300 hover:text-white hover:bg-slate-600 rounded transition text-sm"
               >
                 <FaTools />
                 Admin Dashboard
@@ -74,29 +101,31 @@ const Navbar = () => {
 
               <button
                 onClick={handleLogout}
-                className="px-3 py-1 flex items-center gap-1 text-red-600 hover:underline text-sm"
+                className="px-3 py-1 flex items-center gap-1 text-red-400 hover:text-red-200 hover:bg-slate-600 rounded transition text-sm"
               >
                 <FaSignOutAlt />
                 Logout
               </button>
-            </div>
+            </>
           ) : (
-            <div className="flex gap-3 text-sm">
+            <>
               <Link
                 to="/login"
-                className="px-3 py-1 flex items-center gap-1 text-gray-800 hover:text-indigo-600 hover:bg-indigo-200 rounded transition"
+                onClick={() => setMenuOpen(false)}
+                className="px-3 py-1 flex items-center gap-1 text-slate-100 hover:text-white hover:bg-slate-600 rounded transition"
               >
                 <FaSignInAlt />
                 Login
               </Link>
               <Link
                 to="/register"
-                className="px-3 py-1 flex items-center gap-1 text-gray-800 hover:text-indigo-600 hover:bg-indigo-200 rounded transition"
+                onClick={() => setMenuOpen(false)}
+                className="px-3 py-1 flex items-center gap-1 text-slate-100 hover:text-white hover:bg-slate-600 rounded transition"
               >
                 <FaUserPlus />
                 Register
               </Link>
-            </div>
+            </>
           )}
         </div>
       </div>

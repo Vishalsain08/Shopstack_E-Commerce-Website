@@ -29,23 +29,26 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="h-screen mx-auto overflow-hidden flex items-center justify-center bg-gradient-to-br from-teal-100 via-sky-100 to-indigo-100 px-4">
-      <div className="bg-white/80 backdrop-blur-xl border border-white/30 shadow-xl rounded-2xl max-w-md w-full p-10 space-y-6">
-        <h2 className="text-3xl font-bold text-center text-accent">Create Account 🚀</h2>
+    <div className="min-h-screen flex items-center justify-center bg-indigo-100 px-4">
+      <div className="bg-white/90 backdrop-blur-xl border border-slate-200 shadow-xl rounded-2xl max-w-md w-full p-8 sm:p-10 space-y-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-slate-800">
+          Create Account 🚀
+        </h2>
         <p className="text-center text-gray-600 text-sm">Register to start shopping</p>
 
         {err && <p className="text-red-600 text-sm text-center">{err}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Username */}
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-1">Username</label>
-            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-accent">
-              <FaUser className="text-gray-400 mr-2 text-lg" />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+            <div className="flex items-center border-2 border-indigo-500 rounded-lg px-4 py-2 bg-white shadow-md transition duration-300">
+              <FaUser className="text-indigo-500 mr-2 text-lg" />
               <input
                 name="name"
                 type="text"
-                placeholder="Enter your Username"
-                className="w-full bg-transparent focus:outline-none text-base"
+                placeholder="Enter your username"
+                className="w-full bg-transparent focus:outline-none text-base text-gray-800"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -53,15 +56,16 @@ const RegisterPage = () => {
             </div>
           </div>
 
+          {/* Email */}
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-1">Email</label>
-            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-accent">
-              <FaEnvelope className="text-gray-400 mr-2 text-lg" />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <div className="flex items-center border-2 border-indigo-500 rounded-lg px-4 py-2 bg-white shadow-md transition duration-300">
+              <FaEnvelope className="text-indigo-500 mr-2 text-lg" />
               <input
                 name="email"
                 type="email"
                 placeholder="Enter your email"
-                className="w-full bg-transparent focus:outline-none text-base"
+                className="w-full bg-transparent focus:outline-none text-base text-gray-800"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -69,15 +73,16 @@ const RegisterPage = () => {
             </div>
           </div>
 
+          {/* Password */}
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-1">Password</label>
-            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-accent">
-              <FaLock className="text-gray-400 mr-2 text-lg" />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <div className="flex items-center border-2 border-indigo-500 rounded-lg px-4 py-2 bg-white shadow-md transition duration-300">
+              <FaLock className="text-indigo-500 mr-2 text-lg" />
               <input
                 name="password"
                 type="password"
                 placeholder="Enter your password"
-                className="w-full bg-transparent focus:outline-none text-base"
+                className="w-full bg-transparent focus:outline-none text-base text-gray-800"
                 value={formData.password}
                 onChange={handleChange}
                 required
@@ -85,17 +90,19 @@ const RegisterPage = () => {
             </div>
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-accent hover:bg-green-700 transition text-white py-3 rounded-lg text-lg font-semibold shadow-md"
+            className="w-full bg-slate-700 hover:bg-slate-800 transition text-white py-3 rounded-lg text-lg font-semibold shadow-md"
           >
             Register
           </button>
         </form>
 
+        {/* Redirect to login */}
         <div className="text-center text-sm text-gray-600">
           Already have an account?{' '}
-          <Link to="/login" className="text-accent hover:underline font-medium">
+          <Link to="/login" className="text-indigo-600 hover:underline font-medium">
             Login
           </Link>
         </div>

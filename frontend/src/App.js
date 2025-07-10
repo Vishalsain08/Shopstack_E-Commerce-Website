@@ -14,27 +14,33 @@ import ProductPage from './pages/ProductPage';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import Navbar from './components/Navbar';
-// other imports...
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/cart" element={<PrivateRoute><CartPage /></PrivateRoute>} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-        <Route path="/admin/products" element={<AdminRoute><AdminProductsPage /></AdminRoute>} />
-        <Route path="/admin/products/create" element={<AdminRoute><CreateProductPage /></AdminRoute>} />
-        <Route path="/admin/products/:id/edit" element={<AdminRoute><EditProductPage /></AdminRoute>} />
-        <Route path="/admin/orders" element={<AdminRoute><AdminOrdersPage /></AdminRoute>} />
-      </Routes>
-    </>
+      
+      {/* This section grows to fill the screen if needed */}
+      <main className="flex-grow ">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<PrivateRoute><CartPage /></PrivateRoute>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+          <Route path="/admin/products" element={<AdminRoute><AdminProductsPage /></AdminRoute>} />
+          <Route path="/admin/products/create" element={<AdminRoute><CreateProductPage /></AdminRoute>} />
+          <Route path="/admin/products/:id/edit" element={<AdminRoute><EditProductPage /></AdminRoute>} />
+          <Route path="/admin/orders" element={<AdminRoute><AdminOrdersPage /></AdminRoute>} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 

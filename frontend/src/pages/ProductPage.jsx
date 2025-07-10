@@ -30,7 +30,7 @@ const ProductPage = () => {
   if (!product) return <p className="p-6 font-sans text-danger">Product not found.</p>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-100 via-sky-100 to-indigo-100 py-10 px-4">
+    <div className="min-h-screen bg-indigo-100 py-10 px-4">
       <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10 bg-white rounded-xl shadow-md font-sans">
         <img
           src={product.image}

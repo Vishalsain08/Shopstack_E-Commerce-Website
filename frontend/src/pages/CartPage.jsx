@@ -7,9 +7,9 @@ const CartPage = () => {
   const total = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
   return (
-    <div className="p-6 min-h-screen bg-gradient-to-br from-teal-100 via-sky-100 to-indigo-100">
+    <div className="p-4 sm:p-6 min-h-screen bg-indigo-100">
       <div className="max-w-4xl mx-auto font-sans text-text">
-        <h2 className="text-3xl font-bold mb-6">🛒 Your Cart</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6">🛒 Your Cart</h2>
 
         {cartItems.length === 0 ? (
           <div className="bg-background p-6 rounded shadow text-center">
@@ -23,25 +23,28 @@ const CartPage = () => {
           </div>
         ) : (
           <>
+            {/* Cart Items */}
             <div className="space-y-5">
               {cartItems.map((item) => (
                 <div
                   key={item._id}
-                  className="flex items-center justify-between border rounded-lg p-4 shadow-sm bg-white transition-transform transform hover:scale-105 duration-200 ease-in-out"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border rounded-lg p-4 shadow-sm bg-white transition-transform hover:scale-[1.01] duration-200"
                 >
-                  <div className="flex items-center gap-4">
+                  {/* Image & Details */}
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-20 h-20 object-cover rounded-md shadow"
+                      className="w-24 h-24 object-cover rounded-md shadow"
                     />
-                    <div>
+                    <div className="text-center sm:text-left">
                       <h3 className="text-lg font-semibold">{item.name}</h3>
                       <p className="text-gray-500">₹{item.price}</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  {/* Quantity & Remove */}
+                  <div className="flex flex-col sm:flex-row items-center gap-2">
                     <input
                       type="number"
                       min="1"
@@ -49,7 +52,7 @@ const CartPage = () => {
                       onChange={(e) =>
                         updateQty(item._id, parseInt(e.target.value))
                       }
-                      className="w-16 border rounded px-2 py-1 text-center"
+                      className="w-20 border rounded px-2 py-1 text-center"
                     />
                     <button
                       onClick={() => removeFromCart(item._id)}
@@ -64,28 +67,26 @@ const CartPage = () => {
 
             {/* Total Price */}
             <div className="mt-8 text-left">
-              <p className="text-xl font-semibold">
+              <p className="text-lg sm:text-xl font-semibold">
                 <span className="text-black">Total amount:</span>{' '}
                 <span className="text-green-600">₹{total.toFixed(2)}</span>
               </p>
             </div>
 
-
-            <div className="mt-6 flex justify-between items-center flex-wrap gap-4">
-              {/* Clear Cart Button */}
+            {/* Action Buttons */}
+            <div className="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
               <button
                 onClick={() => {
                   setCartItems([]);
                   localStorage.removeItem('cart');
                 }}
-                className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg transition"
+                className="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg transition"
               >
                 🗑️ Clear Cart
               </button>
 
-              {/* Proceed to Checkout */}
-              <Link to="/checkout">
-                <button className="bg-accent hover:bg-emerald-700 text-white px-6 py-3 rounded-lg transition">
+              <Link to="/checkout" className="w-full sm:w-auto">
+                <button className="w-full sm:w-auto bg-accent hover:bg-emerald-700 text-white px-6 py-3 rounded-lg transition">
                   Proceed to Checkout
                 </button>
               </Link>

@@ -36,20 +36,22 @@ const EditProductPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-100 via-sky-100 to-indigo-100 flex items-center justify-center px-4">
-      <div className="max-w-3xl w-full bg-white rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-extrabold mb-6 text-indigo-600 flex items-center gap-2">
-          <span>✏️</span> Edit Product
+    <div className="min-h-screen bg-indigo-100 flex items-center justify-center px-4 sm:px-6 py-12">
+      <div className="w-full max-w-3xl bg-white/90 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-xl p-6 sm:p-10 space-y-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-slate-800">
+          ✏️ Edit Product
         </h2>
+
         {initialData ? (
           <ProductForm
             initialData={initialData}
             onSubmit={handleUpdate}
             isEditing={true}
-            className="text-lg"
           />
         ) : (
-          <p className="text-gray-600 text-lg text-center py-8">Loading...</p>
+          <p className="text-gray-600 text-center text-base sm:text-lg py-8">
+            Loading...
+          </p>
         )}
       </div>
     </div>
